@@ -1,4 +1,4 @@
-const Blog = require('../blogs/blogModel')
+const Blog = require("../blogs/blogModel");
 
 exports.postBlog = async (blogData) => {
   try {
@@ -11,15 +11,16 @@ exports.postBlog = async (blogData) => {
 };
 exports.getAllBlogs = async () => {
   try {
-    const blogs = await Blog.find()
-    return blogs
+    const blogs = await Blog.find();
+    return blogs;
   } catch (error) {
-    throw new Error('Unable to view Blogs');
+    throw new Error("Unable to view Blogs");
   }
 };
 exports.getBlogById = async (blogId) => {
-  return await User.findById(blogId,("title content author"));
+  return await Blog.findById(blogId, "title content author");
 };
+
 exports.updateBlog = async (blogId, blogData) => {
   try {
     const updatedBlog = await Blog.findByIdAndUpdate(
@@ -28,7 +29,7 @@ exports.updateBlog = async (blogId, blogData) => {
       { new: true, runValidators: true }
     );
     if (!updatedBlog) {
-      throw new Error('Blog not found');
+      throw new Error("Blog not found");
     }
 
     return updatedBlog;
@@ -38,4 +39,4 @@ exports.updateBlog = async (blogId, blogData) => {
 };
 exports.deleteBlog = async (blogId) => {
   return await Blog.findByIdAndDelete(blogId);
-}
+};

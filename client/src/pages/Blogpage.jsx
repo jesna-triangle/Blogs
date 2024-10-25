@@ -1,53 +1,49 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MdDelete } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import { useAuth } from "../contexts/Authcontext";
+
 const BlogPage = () => {
-  const [blogs, setBlogs] = useState(null);
+  const { id } = useParams(); // Get the blog id from the URL
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+  const [blog, setBlog] = useState(null);
+
   const [isLoading, setIsLoading] = useState(true);
-  const getBlogs = async () => {
+
+  const fetchBlog = async () => {
+    console.log(id);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/blog`);
-      if (res.status == 200) {
-        setBlogs(res.data.blogs);
-        // console.log(blogs);
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/blog/${id}`
+      );
+      console.log(response.data);
+      if (response.status == 200) {
+        setBlog(response.data);
       }
     } catch (error) {
-      console.log("error:", error);
+      console.error("Error fetching blog: ", error);
     }
     setIsLoading(false);
   };
+
   useEffect(() => {
-    getBlogs();
+    fetchBlog();
   }, []);
+
   return (
     <>
-      {isLoading ? (
-        <span>Loading...</span>
-      ) : (
-        <>
-          {blogs &&
-            blogs.map((blog, key) => {
-              return (
-             
-               
-                <div key={key} className="blog-page">
-                   <div className="container">
-                     <MdDelete size={25} className="delete" />
-                      <FaRegEdit size={25} className="edit" />
-                </div>
-                 
-                  <h1 className="blog-title">{blog.title}</h1>
-                 
-                  <p className="blog-author">{blog.author}</p>
-                  <div className="blog-content">{blog.content}</div>
-                </div>
-              );
-            })}
-        </>
+      {isLoading ? <span>Loading...</span> : (
+        <div className="blog-page">
+          <h1 className="blog-title">{blog.title}</h1>
+          <div className="blog-email">{blog.email}</div>
+          <p className="blog-author">By {blog.author}</p>
+          <div className="blog-content">{blog.content}</div>
+        </div>
       )}
     </>
   );
 };
- 
+
 export default BlogPage;
+

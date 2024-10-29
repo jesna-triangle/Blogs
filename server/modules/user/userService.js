@@ -19,7 +19,7 @@ exports.getAllUsers = async () => {
 };
 
 exports.getUserById = async (userId) => {
-    return await User.findById(userId,("firstName lastName"));
+    return await User.findById(userId,("firstName lastName email"));
 };
 
 exports.updateUserProfile = async (userId, userData) => {

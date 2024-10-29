@@ -34,9 +34,10 @@ exports.getAllUsers = async (req, res) => {
 };
 exports.getUserById = async (req, res) => {
     try {
+        console.log("first")
         const id = req.params.id
         const user = await userService.getUserById(id);
-
+        console.log(user)
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -46,7 +47,7 @@ exports.getUserById = async (req, res) => {
     }
 };
 exports.updateProfile = async (req, res) => {
-    const {userId} = req.user;
+    const { userId } = req.user;
     const userData = req.body;
     // console.log(userData);
     try {
@@ -100,24 +101,24 @@ exports.logoutUser = async (req, res) => {
 };
 exports.followUser = async (req, res) => {
     try {
-      const currentUserId = req.body.userId; 
-      const targetUserId = req.params.id;
-  
-      const result = await userService.followUser(currentUserId, targetUserId);
-      res.status(200).json(result);
+        const currentUserId = req.body.followerId;
+        const targetUserId = req.params.id;
+
+        const result = await userService.followUser(currentUserId, targetUserId);
+        res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  };
+};
 exports.unfollowUser = async (req, res) => {
     try {
-      const currentUserId = req.body.userId;
-      const targetUserId = req.params.id;
-  
-      const result = await userService.unfollowUser(currentUserId, targetUserId);
-      res.status(200).json(result);
+        const currentUserId = req.body.userId;
+        const targetUserId = req.params.id;
+
+        const result = await userService.unfollowUser(currentUserId, targetUserId);
+        res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-  };
-  
+};
+

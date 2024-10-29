@@ -14,7 +14,7 @@ function Contact() {
        <div className='details'>
            <h1>MyBlogs</h1>
            <h2>Mangoat Near jasoe clg move at river road </h2>
-           <h3>123456789</h3>
+           <h3>+4423456789</h3>
        </div>
 
     </>

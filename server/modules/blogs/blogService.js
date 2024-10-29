@@ -40,3 +40,8 @@ exports.updateBlog = async (blogId, blogData) => {
 exports.deleteBlog = async (blogId) => {
   return await Blog.findByIdAndDelete(blogId);
 };
+
+exports.getAuthorBlogs = async(authorId)=>{
+  // console.log(authorId);
+  return await Blog.find({author:authorId})
+}

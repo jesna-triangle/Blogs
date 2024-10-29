@@ -26,8 +26,12 @@ const router = createBrowserRouter(
         <Route index element={<HomePage />} />
         <Route path='following' element={<Following />} />
         <Route path='blog/:id' element={<BlogPage />} />
+        <Route path='blog' element={<BlogPage />} />
         <Route path='post' element={<CreatePostPage />} />
-        <Route path='user' element={<UsersPage />} />
+        {/* <Route path='user' element={<UsersPage />} /> */}
+        <Route path='user/follow/:id' element={<UsersPage />} />
+        <Route path='user/profile/:id' element={<UsersPage />} />
+        <Route path='user/:authorId' element={<UsersPage />} />
         <Route path="aboutus" element={<AboutUs/>}/>
         <Route path="contact" element={<Contact/>}/>
         

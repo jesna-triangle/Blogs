@@ -5,6 +5,7 @@ import { useAuth } from "../contexts/Authcontext";
 
 const Header = () => {
   const user = localStorage.getItem("userId")
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userId, setUserId] = useState(null);
   const { logout } = useAuth();
@@ -36,7 +37,6 @@ const Header = () => {
 
         <nav className="nav-links">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/following">Following</NavLink>
           <NavLink to="/aboutus">AboutUs</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
@@ -66,7 +66,7 @@ const Header = () => {
         <div className="menu-btn-container">
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <NavLink to="/user" className="dropdown-item">
+              <NavLink to={`/user/${user}`} className="dropdown-item">
                 Profile
               </NavLink>
               <button

@@ -19,6 +19,7 @@ const BlogCard = ({ blog }) => {
   }
 
   };
+ 
 
   
 
@@ -30,6 +31,7 @@ const BlogCard = ({ blog }) => {
           <button onClick={readBlog} className="read-more-link">
             Read More
           </button>
+          
         </div>
       </div>
     </>

@@ -43,7 +43,7 @@ const CreatePostPage = () => {
       if(res.status==200){
         console.log("Blog posted:",res.data);
         getPostData();
-        navigate("/blog");
+        navigate(`/blog/${res.data._id}`);
       }
     } catch (error) {
       console.log("Error: ", error);
@@ -89,11 +89,12 @@ const CreatePostPage = () => {
               value={blogData.category}
               onChange={handleChange}
             >
-              <option value="">Select category</option>
-              <option value="technology">Technology</option>
-              <option value="health">Health</option>
-              <option value="lifestyle">Lifestyle</option>
-              <option value="education">Education</option>
+               <option value="">Select category</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="Mobile & Web Development">Mobile & Web Development</option>
+                      <option value="AI/ML">Artificial Intelligence (AI) & Machine Learning (ML)</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Cloud Computing">Cloud Computing</option>
             </select>
           </div>
  
